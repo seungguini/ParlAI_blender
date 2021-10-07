@@ -388,97 +388,36 @@ class DialogPartnerWorld(World):
             # if count > 850:
             raw_text = raw_text.replace('\n', '')
             if multi_check == True:
-                if turn_n == 2:
-                    turn1 = raw_text.split('</s>')[0]
-                    turn2 = raw_text.split('</s>')[1]
-                    turn_temp = [turn1, turn2]
+                
+                for index, turn_each in enumerate(raw_text.split('</s>')):
 
-                    for index, turn_each in enumerate(turn_temp):
-                        if index == 1:
-                            # second turn
-                            acts[0] = {'id': 'safeLocalHuman', 'episode_done': False, 'label_candidates': None,
-                                       'text': str(turn_each)}
-                            agents[1].observe(validate(acts[0]))
-                            acts[1] = agents[1].act()
-                            agents[0].observe(validate(acts[1]))
-
-                            result = acts[1]['text']
-                            script_response.write("%s\n" % (result))
-                            self.update_counters()
-                            self.finalize_episode()
-                            self.turn_cnt = 0
-
-
-                        # first turn
-                        acts[0] = {'id': 'safeLocalHuman', 'episode_done': True, 'label_candidates': None,
-                                   'text': str(turn_each)}
+            
+                    if index == 1:
+                        # second turn
+                        acts[0] = {'id': 'safeLocalHuman', 'episode_done': False, 'label_candidates': None,
+                                    'text': str(turn_each)}
                         agents[1].observe(validate(acts[0]))
                         acts[1] = agents[1].act()
                         agents[0].observe(validate(acts[1]))
 
                         result = acts[1]['text']
-                        # script_response.write("%s\n" % (result))
+                        script_response.write("%s\n" % (result))
                         self.update_counters()
-                        self.turn_cnt += 1
+                        self.finalize_episode()
+                        self.turn_cnt = 0
 
-                    turn_temp = []
 
-                elif turn_n == 3:
-                    turn1 = raw_text.split('</s>')[0]
-                    turn2 = raw_text.split('</s>')[1]
-                    turn3 = raw_text.split('</s>')[2]
-                    # turn2 = raw_text.split('</s>')[1].split('<\s>')[0]
-                    # turn3 = raw_text.split('<\s>')[1]
-                    # if turn2.find('</s>') != -1:
-                    #     turn3 = raw_text.split('</s>')[2]
-                    # elif raw_text.find('<\s>') != -1:
-                    #     turn3 = raw_text.split('<\s>')[1]
-                    # else:
-                    #     turn3 = ''
-                    #     print("Check the turn3!!")
-                    turn_temp = [turn1, turn2, turn3]
+                    # first turn
+                    acts[0] = {'id': 'safeLocalHuman', 'episode_done': True, 'label_candidates': None,
+                                'text': str(turn_each)}
+                    agents[1].observe(validate(acts[0]))
+                    acts[1] = agents[1].act()
+                    agents[0].observe(validate(acts[1]))
 
-                    for index, turn_each in enumerate(turn_temp):
-                        if index == 1:
-                            # second turn
-                            acts[0] = {'id': 'safeLocalHuman', 'episode_done': False, 'label_candidates': None,
-                                       'text': str(turn_each)}
-                            agents[1].observe(validate(acts[0]))
-                            acts[1] = agents[1].act()
-                            agents[0].observe(validate(acts[1]))
-
-                            result = acts[1]['text']
-                            # script_response.write("%s\n" % (result))
-                            self.update_counters()
-                            self.turn_cnt += 1
-
-                        if index == 2:
-                            # third turn
-                            acts[0] = {'id': 'safeLocalHuman', 'episode_done': False, 'label_candidates': None,
-                                       'text': str(turn_each)}
-                            agents[1].observe(validate(acts[0]))
-                            acts[1] = agents[1].act()
-                            agents[0].observe(validate(acts[1]))
-
-                            result = acts[1]['text']
-                            script_response.write("%s\n" % (result))
-                            self.update_counters()
-                            self.finalize_episode()
-                            self.turn_cnt = 0
-
-                        # first turn
-                        acts[0] = {'id': 'safeLocalHuman', 'episode_done': True, 'label_candidates': None,
-                                   'text': str(turn_each)}
-                        agents[1].observe(validate(acts[0]))
-                        acts[1] = agents[1].act()
-                        agents[0].observe(validate(acts[1]))
-
-                        # result = acts[1]['text']
-                        # script_response.write("%s\n" % (result))
-                        self.update_counters()
-                        self.turn_cnt += 1
-
-                    turn_temp = []
+                    result = acts[1]['text']
+                    # script_response.write("%s\n" % (result))
+                    self.update_counters()
+                    self.turn_cnt += 1
 
             else:
                 # acts[0] = {'id': 'localHuman', 'episode_done': True, 'label_candidates': None, 'text': str(raw_text)}
