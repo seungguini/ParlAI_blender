@@ -237,7 +237,7 @@ class InteractiveWorld(DialogPartnerWorld):
                             script_response.write("%s\n" % (result))
                             self.update_counters()
 
-                        # first turn
+                        # Final Turn
                         try:
                             # act = deepcopy(agents[0].act())
                             act = {'id': 'localHuman', 'episode_done': True, 'label_candidates': None,

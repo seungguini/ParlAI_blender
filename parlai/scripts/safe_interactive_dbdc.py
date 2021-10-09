@@ -127,12 +127,12 @@ def safe_interactive(opt, print_parser=None):
                 print('EPOCH DONE')
                 break
     # else:
-    elif opt.get('chat_script') and opt.get('include_personas'):
+    elif opt.get('chat_script'): # and opt.get('include_personas'):
         while True:
-            # world.parley_script(opt.get('script_input_path'), opt.get('script_output_path'), opt.get('model-file'))
+            world.parley_script(opt.get('script_input_path'), opt.get('script_output_path'), opt.get('model-file'))
             # turn_available = [0, 2, 3]
-            world.parley_persona_script(opt.get('script_input_path'), opt.get('script_output_path'), opt.get('model_file'),
-                                opt.get('chateval_multi'),opt.get('chateval_multi_num'))
+            #world.parley_persona_script(opt.get('script_input_path'), opt.get('script_output_path'), opt.get('model_file'),
+            #                    opt.get('chateval_multi'),opt.get('chateval_multi_num'))
             bot_act = world.get_acts()[-1]
             if 'bot_offensive' in bot_act and bot_act['bot_offensive']:
                 agent.reset()
@@ -147,10 +147,10 @@ def safe_interactive(opt, print_parser=None):
 
     elif opt.get('chat_script') and opt.get('dbdc_check'):
         while True:
-            # world.parley_script(opt.get('script_input_path'), opt.get('script_output_path'), opt.get('model-file'))
+            world.parley_script(opt.get('script_input_path'), opt.get('script_output_path'), opt.get('model-file'))
             # turn_available = [0, 2, 3]
-            world.parley_dbdc_script(opt.get('script_input_path'), opt.get('script_output_path'), opt.get('model_file'),
-                                opt.get('chateval_multi'))
+            #world.parley_dbdc_script(opt.get('script_input_path'), opt.get('script_output_path'), opt.get('model_file'),
+            #                    opt.get('chateval_multi'))
             bot_act = world.get_acts()[-1]
             if 'bot_offensive' in bot_act and bot_act['bot_offensive']:
                 agent.reset()
