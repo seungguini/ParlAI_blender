@@ -348,7 +348,7 @@ class DialogPartnerWorld(World):
         acts[1] = agents[1].act()
         agents[0].observe(validate(acts[1]))
         self.update_counters()
-
+    # SEUNGGUN - THIS IS RUNNING
     def parley_script(self, input_path, output_path, model_name, multi_check, turn_n):
         """
         Agent 0 goes first.
@@ -388,7 +388,7 @@ class DialogPartnerWorld(World):
             # if count > 850:
             raw_text = raw_text.replace('\n', '')
             if multi_check == True:
-                
+                # SPLITTING BASED ON </s> -> FORMAT OF PROMPT
                 for index, turn_each in enumerate(raw_text.split('</s>')):
 
             
@@ -471,7 +471,7 @@ class DialogPartnerWorld(World):
         agents = self.agents
         # acts[0] = agents[0].act()
         count = 0
-        for raw_text in script_file:
+        for raw_text in script_file: # REAdING IN SCRIPTS
             count += 1
             # acts[0] = {'id': 'localHuman', 'episode_done': False, 'label_candidates': None, 'text': 'hi'}
             # if count > 850:

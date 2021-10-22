@@ -1,0 +1,1 @@
+python parlai/scripts/safe_interactive_dbdc.py -t blended_skill_talk -mf zoo:blender/blender_3B/model --include-personas False -sc True -scip ./dailydialogs_prompts.txt -scop test_response.txt  --chateval-multi True --dbdc True --single-turn False

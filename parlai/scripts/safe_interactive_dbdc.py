@@ -126,7 +126,7 @@ def safe_interactive(opt, print_parser=None):
             if world.epoch_done():
                 print('EPOCH DONE')
                 break
-    # else:
+    # else: 
     elif opt.get('chat_script'): # and opt.get('include_personas'):
         while True:
             world.parley_script(opt.get('script_input_path'), opt.get('script_output_path'), opt.get('model-file'))
@@ -144,7 +144,7 @@ def safe_interactive(opt, print_parser=None):
                 print("EPOCH DONE")
                 break
 
-
+    # THIS IS THE SCRIPT RUNNING for SEUNGGUN
     elif opt.get('chat_script') and opt.get('dbdc_check'):
         while True:
             world.parley_script(opt.get('script_input_path'), opt.get('script_output_path'), opt.get('model-file'))
